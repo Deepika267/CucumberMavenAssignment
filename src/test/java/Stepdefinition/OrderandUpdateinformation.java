@@ -18,16 +18,16 @@ import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import managers.PageObjectManager;
+import pages.CheckoutPage;
+import pages.LoginPage;
+import pages.OrderHistoryPage;
+import pages.PaymentPage;
+import pages.ProductSelectionPage;
+import pages.UserInformationPage;
 import managers.ManagingWebDriver;
-import pageObjects.CheckoutPage;
-import pageObjects.LoginPage;
-import pageObjects.OrderHistoryPage;
-import pageObjects.PaymentPage;
-import pageObjects.ProductSelectionPage;
-import pageObjects.UserInformationPage;
 import reusablefunctions.Reusablefunctions;
 
-public class OrderandUpdateinformation extends Hooks {	
+public class OrderandUpdateinformation extends StepBase {	
 	
 	public OrderandUpdateinformation(Context context) {
 		super(context);

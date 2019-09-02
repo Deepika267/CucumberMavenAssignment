@@ -9,14 +9,14 @@ import java.util.Properties;
 import org.openqa.selenium.WebDriver;
 
 import enums.Drivers;
-import enums.Environments;
+//import enums.Environments;
 import managers.PageObjectManager;
+import pages.LoginPage;
 import managers.ManagingWebDriver;
-import pageObjects.LoginPage;
 
 public class Reusablefunctions  {
 	protected Properties properties;
-	private final String propertyFilepath="Configs//configurations.properties";
+	private final String propertyFilepath="configs//configurations.properties";
 	ManagingWebDriver webDriverManager;
 	LoginPage loginpage;
 	PageObjectManager pageObjectManager;
@@ -56,28 +56,23 @@ public class Reusablefunctions  {
 			}
 			return 30;
 				}
-			public String getDriverPath(){
-			String driverPath=properties.getProperty("driverPath");
-			if(driverPath!= null) return driverPath;
-			else throw new RuntimeException("driverPath not specified in the configuration.properties file.");		
-		}
-		
+			
 		public String getApplicationUrl() {
 			String url = properties.getProperty("url");
 			if(url != null) return url;
 			else throw new RuntimeException("url not specified in the Configuration.properties file.");
 		}
-		public String enterUserName(){
+		public String getUserName(){
 			String uname = properties.getProperty("uname");
 			if(uname != null) return uname;
 			else throw new RuntimeException("uname not specified in the Configuration.properties file.");
 		}
-		public String enterpassword(){
+		public String getpassword(){
 			String pwd = properties.getProperty("pwd");
 			if(pwd != null) return pwd;
 			else throw new RuntimeException("pwd not specified in the Configuration.properties file.");
 		}
-		public String getUserName(){
+		public String getRegisteredUserName(){
 			String registeredUserName = properties.getProperty("registeredUserName");
 			if(registeredUserName != null) return registeredUserName;
 			else throw new RuntimeException("registeredUserName not specified in the Configuration.properties file.");
@@ -89,13 +84,7 @@ public class Reusablefunctions  {
 			else if(browserName.equalsIgnoreCase("firefox")) return Drivers.FIREFOX;
 			else if(browserName.equals("iexplorer")) return Drivers.INTERNETEXPLORER;
 			else throw new RuntimeException("Browser Name Key value in Configuration.properties is not matched : " + browserName);
-		}
-		public Environments getEnvironment() {
-			String environmentName = properties.getProperty("environment");
-			if(environmentName == null || environmentName.equalsIgnoreCase("local")) return Environments.LOCAL;
-			else if(environmentName.equals("remote")) return Environments.REMOTE;
-			else throw new RuntimeException("Environment Type Key value in Configuration.properties is not matched : " + environmentName);
-		}
+		}		
 	 
 		public Boolean getBrowserWindowSize() {
 			String windowSize = properties.getProperty("windowMaximize");

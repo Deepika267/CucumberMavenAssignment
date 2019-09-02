@@ -8,19 +8,17 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 
 import enums.Drivers;
-import enums.Environments;
+
 
 public class ManagingWebDriver {
 
 	private WebDriver driver;
 	private static Drivers driverType;
-	private static Environments environmentType;
 	private static final String CHROME_DRIVER_PROPERTY = "webdriver.chrome.driver";
 	private static final String IE_DRIVER_PROPERTY = "webdriver.ie.driver";
  
 	public ManagingWebDriver(){
 	driverType = ManagingFileReading.getInstance().getConfigReader().getBrowser();
-	environmentType = ManagingFileReading.getInstance().getConfigReader().getEnvironment();
 	}
  
 	public WebDriver getDriver() {
@@ -28,30 +26,16 @@ public class ManagingWebDriver {
 		return driver;
 	}
  
-	private WebDriver createDriver() {
-		   switch (environmentType) {	    
-	        case LOCAL : driver = createLocalDriver();
-	        	break;
-	        case REMOTE : driver = createRemoteDriver();
-	        	break;
-		   }
-		   return driver;
-	}
- 
-	private WebDriver createRemoteDriver() {
-		throw new RuntimeException("RemoteWebDriver is not yet implemented");
-	}
- 
-	private WebDriver createLocalDriver() {
+ 	private WebDriver createDriver() {
 	 switch (driverType) {	    
 	 case FIREFOX : driver = new FirefoxDriver();
 	 	break;
 	  case CHROME : 
-	 	System.setProperty(CHROME_DRIVER_PROPERTY, ManagingFileReading.getInstance().getConfigReader().getDriverPath());
+	 	System.setProperty(CHROME_DRIVER_PROPERTY, System.getProperty("user.dir")+"\\resources\\chromedriver.exe");
      	driver = new ChromeDriver();
 	 	break;
 	   case INTERNETEXPLORER : 
-		System.setProperty(IE_DRIVER_PROPERTY, ManagingFileReading.getInstance().getConfigReader().getDriverPath());
+		System.setProperty(IE_DRIVER_PROPERTY, System.getProperty("user.dir")+"\\resources\\IEDriverServer.exe");
 		driver = new InternetExplorerDriver();		   	   
 	 	break;
 	    }
@@ -61,12 +45,7 @@ public class ManagingWebDriver {
 	 	return driver;
 	 }	
  
-	 public void closeDriver() {
-	 	driver.close();
-	 	driver.quit();
-	 }
- 
-	
+		
 	
 	
 	

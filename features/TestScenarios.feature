@@ -1,8 +1,13 @@
 Feature: Order T-shirt and verify in order history
 
+In the first scenario, the user will order a Tshirt
+and validate if order is reflecting in order history
+
+In the second scenario,the user updates first name information
+ 
 
   Scenario: User able to order a Tshirt
-  Given user login to the application 
+  Given user login to the application
   When user selects a product and add it to cart
   And user orders a Tshirt
   Then order is reflecting in order history
@@ -12,10 +17,7 @@ Feature: Order T-shirt and verify in order history
   Given user login to the application  
   When user updates personal information
   Then updates are saved in user info
- 
 
-  
-  
   
   
   
